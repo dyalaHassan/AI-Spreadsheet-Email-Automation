@@ -75,36 +75,10 @@ To create one:
 5. Copy the generated 16-character password.
 6. Put that value in `.env` as `SENDER_PASSWORD`.
 
-Do not upload your real `.env` file to GitHub.
 
-Add this to `.gitignore`:
 
-```text
-.env
-```
 
-You can also create `.env.example` containing only empty placeholders.
 
-## Gmail SMTP
-
-### Current recommended method
-
-The SSL method connects securely from the beginning using port `465`:
-
-```python
-import ssl
-import smtplib
-
-context = ssl.create_default_context()
-
-with smtplib.SMTP_SSL(
-    "smtp.gmail.com",
-    465,
-    context=context
-) as server:
-    server.login(SENDER_EMAIL, SENDER_PASSWORD)
-    server.send_message(msg)
-```
 
 The `with` block closes the connection automatically.
 
@@ -173,22 +147,8 @@ PythonAnywhere changed scheduled-task availability in 2026. New free accounts ma
 
 Also note that free PythonAnywhere accounts restrict outbound internet access to allowlisted services. If Google Sheets, OpenRouter, or Gmail SMTP is blocked for your account, you may need a paid account or another scheduler.
 
-## Security
 
-Never commit these values to GitHub:
 
-- API keys
-- Gmail App Password
-- Spreadsheet credentials
-- `.env`
-
-A safe `.gitignore`:
-
-```text
-.env
-__pycache__/
-*.pyc
-```
 
 ## Flow
 
